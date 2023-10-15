@@ -12,6 +12,8 @@ import Post from './Post'
 import Post3 from './Post3'
 import logo from '../static/logosmall.png'
 import { makeStyles } from '@mui/styles';
+import { red } from '@mui/material/colors';
+import { height } from '@mui/system';
 const useStyles = makeStyles((theme) => ({
  logo: {
     
@@ -47,7 +49,7 @@ function Home() {
       setCount(user_data.data().totalToday)
       setGoal(user_data.data().goal)
       setGain(user_data.data().gain)
-      setProgress((user_data.data().totalToday/user_data.data().goal).toFixed(2))
+      setProgress(((user_data.data().totalToday/user_data.data().goal)*100).toFixed(2))
     }
   }
 
@@ -57,7 +59,8 @@ function Home() {
 
   const displayLastItem = () => {
     if (cals != 0) {
-      return  <span>Added {cals} calories for "{lastFood}"</span>
+      const curr = cals;
+      return  <span>Added {curr.toFixed(2)} calories for "{lastFood}"</span>
     }
   }
 
@@ -79,17 +82,14 @@ function Home() {
   return (<div><img src={logo} className={classes.logo}></img>
     <div className="App">
          
-      {/* <input type='text' onChange={(e) => setFood(e.target.value)}></input>
+      <input type='text' onChange={(e) => setFood(e.target.value)}></input>
       <button onClick={()=>handleButton()}>Get Calories</button>
 
       <button>Search with Picture</button>
 
       <span> Streak : {streak}</span>
       <h2>Progress: {progress}%</h2>
-      <div className="progress-container">
-        <div className="progress-bar" style={{ width: `${progress}%` }}></div>
-      </div> */}
-      <h2>Current Calorie Count for Today: {count}</h2>
+      <h2>Current Calorie Count for Today: {count.toFixed(2)}</h2>
       {displayLastItem()}
       {displayGoalMet()}
       <div>
