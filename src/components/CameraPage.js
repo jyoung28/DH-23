@@ -1,10 +1,9 @@
 import React, { useContext, useState } from 'react';
 import Webcam from 'react-webcam';
 import { Button } from '@mui/material';
-import fetchLabelsFromImage from './vision'
 import runQuery from './SearchFood'
 import {  makeStyles } from '@mui/styles';
-
+import BottomNavbar from './bottomNavbar'
 const useStyles = makeStyles((theme) => ({
   cameraContainer: {
     display: 'flex',
@@ -71,6 +70,7 @@ const capture = () => {
       .then(response => response.json())
       .then(data => {
         console.log('Response from Flask API:', data);
+        
       })
       .catch(error => {
         console.error('Error:', error);
@@ -101,6 +101,7 @@ const capture = () => {
           <Button onClick={saveImage}   className={classes.button}>Submit</Button>
         </>
       )}
+      <BottomNavbar></BottomNavbar>
     </div>
   );
 };

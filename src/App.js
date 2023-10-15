@@ -34,8 +34,8 @@ function App() {
                 <Route element={<Projects/>} path="/projects" exact/>
                 <Route element={<ContactMe/>} path="/contactme" exact/> */}
             </Routes>
-            <CameraPage></CameraPage>
-            <BottomNavbar></BottomNavbar>
+        
+            
             </UserProvider>
         </HashRouter>
     </div>

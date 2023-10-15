@@ -12,7 +12,7 @@ import { makeStyles } from '@mui/styles';
 import {db} from '../firebaseSetup/firebase';
 import { doc, getDoc, setDoc } from "firebase/firestore"; 
 import UserContext from './UserContext';
-
+import BottomNavbar from './bottomNavbar'
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
@@ -97,6 +97,7 @@ function GoalPage() {
         </Button>
       </form>
     </Container>
+    <BottomNavbar></BottomNavbar>
     </div>
   );
 }

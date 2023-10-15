@@ -6,7 +6,7 @@ import runQuery from './SearchFood.js';
 import UserContext from './UserContext';
 import {db} from '../firebaseSetup/firebase';
 import { doc, getDoc, setDoc } from "firebase/firestore";
-
+import BottomNavbar from './bottomNavbar'
 
 function Home() {
   let {user} = useContext(UserContext);
@@ -68,6 +68,7 @@ function Home() {
       <h2>Current Calorie Count for Today: {count}</h2>
       {displayLastItem()}
       {displayGoalMet()}
+      <BottomNavbar></BottomNavbar>
     </div>
   );
 }
