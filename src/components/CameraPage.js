@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useNavigate } from 'react';
 import Webcam from 'react-webcam';
 import { Button } from '@mui/material';
 import runQuery from './SearchFood'
@@ -6,7 +6,6 @@ import {  makeStyles } from '@mui/styles';
 import BottomNavbar from './bottomNavbar'
 import logo from '../static/logosmall.png'
 import OptionModal from './OptionModal';
-import { Navigate } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
   cameraContainer: {
@@ -30,8 +29,6 @@ const CameraPage = ({ onSaveImage }) => {
   const [capturing, setCapturing] = useState(true);
   const [food,setFood] = useState(null)
   const [isModalOpen, setModalOpen] = useState(false); // Add state for the modal
-  const [selectedFood, setSelectedFood]= useState("");
-  const [cals, setCals] = useState(0);
 
   const handleModalClose = () => {
     setModalOpen(false); // Close the modal
@@ -148,7 +145,6 @@ const capture = () => {
             runQuery(selectedOption);
             handleModalClose();
             navigate('/home')
-            
           }}
         />
         {displayCals}
