@@ -14,6 +14,7 @@ import SearchPage from './components/SearchPage';
 import CameraPage from './components/CameraPage';
 import {HashRouter, Route, Routes} from 'react-router-dom'
 import { UserProvider } from './components/UserContext';
+import PrivateRoutes from './components/PrivateRoutes';
 
 import BottomNavbar from './components/bottomNavbar'
 function App() {
@@ -27,12 +28,14 @@ function App() {
          
             <Routes>
                 <Route element={<Login/>} path="/" exact/>
+                < Route element={<PrivateRoutes/>}>
                 <Route element={<GoalPage/>} path="/goal" exact/>
                 <Route element={<Home/>} path="/home" exact/>
                 <Route element={<SearchPage/>} path="/search" exact/>
                 {/* <Route element={<TimelinePage/>} path="/timeline" exact/>
                 <Route element={<Projects/>} path="/projects" exact/>
                 <Route element={<ContactMe/>} path="/contactme" exact/> */}
+                </Route>
             </Routes>
         
             
