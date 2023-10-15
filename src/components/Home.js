@@ -1,6 +1,7 @@
 import '../App.css';
 import axios from "axios";
 import React, {useContext, useEffect, useState} from 'react';
+import { TextField, Button } from '@mui/material';
 import { signInWithPopup} from "firebase/auth";
 import runQuery from './SearchFood.js';
 import UserContext from './UserContext';
@@ -81,15 +82,33 @@ function Home() {
 
   return (<div><img src={logo} className={classes.logo}></img>
     <div className="App">
-         
-      <input type='text' onChange={(e) => setFood(e.target.value)}></input>
-      <button onClick={()=>handleButton()}>Get Calories</button>
+       <div style={{ marginTop: '1rem' }} > 
+    <TextField
+      type="text"
+      variant="outlined"
+      onChange={(e) => setFood(e.target.value)}
+      label="Food"
+      sx={{  width: '150px',marginLeft:'1rem',height: '16.5px', marginBottom:'3rem','& input': { height: '8px' } }}
+    />
+    
+    <Button
+      variant="contained"
+      color="primary"
+      onClick={handleButton}
+      sx={{ width: '150px',marginLeft:'1rem' }}
+    >
+      Get Calories
+    </Button>
+    
 
-      <button>Search with Picture</button>
+      <span> Streak : {streak}</span></div> 
+      {/* <h2>Progress: {progress}%</h2>
 
-      <span> Streak : {streak}</span>
-      <h2>Progress: {progress}%</h2>
-      <h2>Current Calorie Count for Today: {count.toFixed(2)}</h2>
+      <div className="progress-container">
+        <div className="progress-bar" style={{ width: `${progress}%` }}></div>
+      </div> */} 
+      <h2>Current Calorie Count for Today: 90</h2>
+
       {displayLastItem()}
       {displayGoalMet()}
       <div>
