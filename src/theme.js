@@ -6,10 +6,10 @@ const theme = createTheme({
   // Customize the theme here
   palette: {
     primary: {
-      main: '#EE4B2B', // Set your primary color
+      main: '#D2042D', // Set your primary color
     },
     secondary: {
-      main: '#D2042D', // Set your secondary color
+      main: '#EE4B2B', // Set your secondary color
     },
   },
   typography: {

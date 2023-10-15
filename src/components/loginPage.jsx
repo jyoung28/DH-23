@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   submit: {
  
   },  logo: {
-    width: '100px', // Adjust the width and height according to your logo's dimensions
+    width: '25rem', // Adjust the width and height according to your logo's dimensions
     height: 'auto',
   }
 }));
