@@ -10,9 +10,30 @@ const CameraPage = ({ onSaveImage }) => {
 
   const capture = async () => {
     const imageSrc = webcamRef.current.getScreenshot();
-    setImage(imageSrc);
+    
+     // Convert the base64 JPEG image to binary data
+     const binaryData = atob(screenshot.split(',')[1]);
 
+     // Create a new Uint8Array from the binary data
+     const uint8Array = new Uint8Array(binaryData.length);
+     for (let i = 0; i < binaryData.length; i++) {
+       uint8Array[i] = binaryData.charCodeAt(i);
+     }
 
+     // Create a blob from the Uint8Array
+     const blob = new Blob([uint8Array], { type: 'image/jpeg' });
+
+     // Use a FileReader to convert the blob to a data URL with PNG format
+     const reader = new FileReader();
+     reader.onload = () => {
+       const pngScreenshot = reader.result;
+
+       // Now, `pngScreenshot` contains the screenshot in PNG format
+       // You can display it or save it as needed
+       console.log('PNG Screenshot:', pngScreenshot);
+     };
+     reader.readAsDataURL(blob);
+     setImage(pngScreenshot)
     setCapturing(false);
   };
 
