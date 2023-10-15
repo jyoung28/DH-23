@@ -13,12 +13,19 @@ const BottomNavBar = () => {
   };
 
   return (
-    <BottomNavigation value={value} onChange={handleChange}>
-
-      <Link to="/home">       <BottomNavigationAction label="Home" icon={<HomeIcon />} /></Link>
-      <Link to="/search">       <BottomNavigationAction label="Camera" icon={<CameraAltIcon />} /> </Link>
-      <Link to="/goal">      <BottomNavigationAction label="Profile" icon={<PersonIcon />} /></Link>
-    </BottomNavigation>
+    <div style={{ position: 'fixed', bottom: 0, width: '100%', zIndex: 100 }}>
+      <BottomNavigation value={value} onChange={handleChange}>
+        <Link to="/home">
+          <BottomNavigationAction label="Home" icon={<HomeIcon />} />
+        </Link>
+        <Link to="/search">
+          <BottomNavigationAction label="Camera" icon={<CameraAltIcon />} />
+        </Link>
+        <Link to="/goal">
+          <BottomNavigationAction label="Profile" icon={<PersonIcon />} />
+        </Link>
+      </BottomNavigation>
+    </div>
   );
 };
 

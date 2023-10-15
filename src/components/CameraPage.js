@@ -4,6 +4,7 @@ import { Button } from '@mui/material';
 import runQuery from './SearchFood'
 import {  makeStyles } from '@mui/styles';
 import BottomNavbar from './bottomNavbar'
+import logo from '../static/logosmall.png'
 const useStyles = makeStyles((theme) => ({
   cameraContainer: {
     display: 'flex',
@@ -11,7 +12,11 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   button: {
-    margin: theme.spacing(1),
+  marginTop: theme.spacing(2)
+  },
+  logo: {
+    marginTop:'1rem',
+    height: '2rem',
   },
 }));
  
@@ -80,29 +85,30 @@ const capture = () => {
   };
   const classes = useStyles();
   return (
-    
+    <div>
+      <img src={logo} className={classes.logo}></img>
     <div className={classes.cameraContainer}>
       {capturing ? (
         <>
           <Webcam
             audio={false}
-            height={400}
+            style={{ height: '70vh', width: '400px' }}
             ref={webcamRef}
             screenshotFormat="image/jpeg"
             
           />
           
-          <Button onClick={capture}   className={classes.button}>Capture Photo</Button>
+          <Button disableElevation onClick={capture} variant='contained'   className={classes.button}>Capture Photo</Button>
         </>
       ) : (
         <>
           <img src={image} alt="Captured" />
-          <Button onClick={retake}   className={classes.button}>Retake</Button>
-          <Button onClick={saveImage}   className={classes.button}>Submit</Button>
+          <Button disableElevation variant='contained' onClick={retake}   className={classes.button}>Retake</Button>
+          <Button disableElevation variant='contained' onClick={saveImage}   className={classes.button}>Submit</Button>
         </>
       )}
       <BottomNavbar></BottomNavbar>
-    </div>
+    </div></div>
   );
 };
 

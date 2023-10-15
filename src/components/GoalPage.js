@@ -22,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '100vh', // Ensure the container takes up the full viewport height
   },
   form: {
-    width: '100%',
+
+    width: '400px',
     marginTop: '5rem'
   },
   button: {
