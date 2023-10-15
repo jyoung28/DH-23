@@ -17,6 +17,7 @@ function Home() {
   const [lastFood, setLastFood] = useState("");
   const [goal, setGoal] = useState("");
   const [gain, setGain] = useState(null);
+  const [progress, setProgress] = useState(0)
 
   const handleButton =  async () => {
     try{
@@ -30,10 +31,11 @@ function Home() {
 
   const getCount = async () => {
     const user_data = await getDoc(doc(db, "users", user));
-    if (user_data.data().totalToday) {
+    if (user_data.data() && user_data.data().totalToday) {
       setCount(user_data.data().totalToday)
       setGoal(user_data.data().goal)
       setGain(user_data.data().gain)
+      setProgress((user_data.data().totalToday/user_data.data().goal).toFixed(2))
     }
   }
   const displayLastItem = () => {
@@ -65,6 +67,10 @@ function Home() {
       <button>Search with Picture</button>
 
       <span> Streak : {streak}</span>
+      <h2>Progress: {progress}%</h2>
+      <div className="progress-container">
+        <div className="progress-bar" style={{ width: `${progress}%` }}></div>
+      </div>
       <h2>Current Calorie Count for Today: {count}</h2>
       {displayLastItem()}
       {displayGoalMet()}
