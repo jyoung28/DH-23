@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import LoginPage from './components/LoginPage.jsx'
+import Login from './components/LoginPage.jsx'
 import './App.css';
 import axios from "axios";
 import React, {useState} from 'react';
@@ -26,7 +26,7 @@ function App() {
             {/* <Header/> */}
          
             <Routes>
-                <Route element={<LoginPage/>} path="/" exact/>
+                <Route element={<Login/>} path="/" exact/>
                 <Route element={<GoalPage/>} path="/goal" exact/>
                 <Route element={<Home/>} path="/home" exact/>
                 <Route element={<SearchPage/>} path="/search" exact/>

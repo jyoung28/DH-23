@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function LoginPage() {
+function Login() {
   let {user, loginUser} = useContext(UserContext)
 
   const navigate = useNavigate();
@@ -65,4 +65,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default Login;
