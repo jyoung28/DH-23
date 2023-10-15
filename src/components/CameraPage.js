@@ -36,7 +36,6 @@ const CameraPage = ({ onSaveImage }) => {
 
 
 const capture = () => {
-  const navigate = useNavigate();
   const imageSrc = webcamRef.current.getScreenshot();
 
   // Display the captured image
@@ -96,18 +95,10 @@ const capture = () => {
  
   };
 
-  useEffect(() => {
-    if(selectedFood != "") {
-      try {
-        setCals(runQuery(selectedFood));
-      } catch {
-        console.error("Error")
-      }
-    }
-  }, [selectedFood])
 
 
   const classes = useStyles();
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -147,7 +138,6 @@ const capture = () => {
             navigate('/home')
           }}
         />
-        {displayCals}
       <BottomNavbar></BottomNavbar>
     </div></div>
   );
