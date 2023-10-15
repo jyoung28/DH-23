@@ -84,7 +84,8 @@ def SearchCalorieNinja(query):
 def ReadLabel(image_uri):
     api_key = 'AIzaSyC80kUfA0WpiKxc8UtDy-CqqkBYDkK0xcg'  # Replace with your Google Cloud API Key
     api_url = f'https://vision.googleapis.com/v1/images:annotate?key={api_key}'
-    image_uri = 'https://cdn.shortpixel.ai/spai2/q_lossy+ret_img+to_webp/https://seattlemag.com/wp-content/uploads/2021/12/pepperoni.jpg'
+    image_uri = image_uri.replace('data:image/jpeg;base64,', '')
+   #image_uri=
     request_body = {
         "requests": [
             {

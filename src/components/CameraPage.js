@@ -2,11 +2,25 @@ import React, { useContext, useState } from 'react';
 import Webcam from 'react-webcam';
 import { Button } from '@mui/material';
 import fetchLabelsFromImage from './vision'
+import runQuery from './SearchFood'
+import {  makeStyles } from '@mui/styles';
+
+const useStyles = makeStyles((theme) => ({
+  cameraContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
+ 
 //'AIzaSyC80kUfA0WpiKxc8UtDy-CqqkBYDkK0xcg'
 const CameraPage = ({ onSaveImage }) => {
   const webcamRef = React.useRef(null);
   const [image, setImage] = useState(null);
-  const [capturing, setCapturing] = useState(false);
+  const [capturing, setCapturing] = useState(true);
 
 const capture = () => {
   const imageSrc = webcamRef.current.getScreenshot();
@@ -46,7 +60,7 @@ const capture = () => {
 
 
     // Make a POST request to your Flask API here
-    const imageUri = image; // Replace with the actual image URI
+    // Replace with the actual image URI
     fetch('http://127.0.0.1:5000/vis', {
       method: 'POST',
       headers: {
@@ -61,10 +75,13 @@ const capture = () => {
       .catch(error => {
         console.error('Error:', error);
       });
-  };
 
+ 
+  };
+  const classes = useStyles();
   return (
-    <div>
+    
+    <div className={classes.cameraContainer}>
       {capturing ? (
         <>
           <Webcam
@@ -72,14 +89,16 @@ const capture = () => {
             height={400}
             ref={webcamRef}
             screenshotFormat="image/jpeg"
+            
           />
-          <Button onClick={capture}>Capture Photo</Button>
+          
+          <Button onClick={capture}   className={classes.button}>Capture Photo</Button>
         </>
       ) : (
         <>
           <img src={image} alt="Captured" />
-          <Button onClick={retake}>Retake</Button>
-          <Button onClick={saveImage}>Submit</Button>
+          <Button onClick={retake}   className={classes.button}>Retake</Button>
+          <Button onClick={saveImage}   className={classes.button}>Submit</Button>
         </>
       )}
     </div>
