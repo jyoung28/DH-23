@@ -6,6 +6,7 @@ import {  makeStyles } from '@mui/styles';
 import BottomNavbar from './bottomNavbar'
 import logo from '../static/logosmall.png'
 import OptionModal from './OptionModal';
+import { Navigate } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
   cameraContainer: {
@@ -38,6 +39,7 @@ const CameraPage = ({ onSaveImage }) => {
 
 
 const capture = () => {
+  const navigate = useNavigate();
   const imageSrc = webcamRef.current.getScreenshot();
 
   // Display the captured image
@@ -107,14 +109,6 @@ const capture = () => {
     }
   }, [selectedFood])
 
-  const displayCals = () => {
-    if (cals > 0) {
-        const s = <h1> Added {cals} to your calorie count with "{selectedFood}"</h1>
-        setCals(0);
-        setSelectedFood("");
-        return s;
-    }
-  }
 
   const classes = useStyles();
 
@@ -150,8 +144,11 @@ const capture = () => {
             console.log('Selected Option:', selectedOption);
             //do a runquery with selected option
             // where to display results?
-            setSelectedFood(selectedOption);
+            //setSelectedFood(selectedOption);
+            runQuery(selectedOption);
             handleModalClose();
+            navigate('/home')
+            
           }}
         />
         {displayCals}

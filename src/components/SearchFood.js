@@ -20,9 +20,12 @@ export default async function runQuery(query, user) {
             }
             console.log(total);
             const user_data = await getDoc(doc(db, "users", user));
+            if (user_data.data().totalToday ) {
+                total += user_data.data().totalToday 
+            }
 
             await setDoc(doc(db, "users", user), {
-                totalToday:  user_data.data().totalToday + total,
+                totalToday:  total,
                 goal: user_data.data().goal,
                 gain: user_data.data().gain,
 
