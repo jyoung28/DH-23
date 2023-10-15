@@ -30,8 +30,6 @@ function LoginPage() {
 
   const navigate = useNavigate();
   const classes = useStyles();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
   const [user, setUser] = useState(null);
   const [signedIn, setSignedIn] = useState(false);
 
