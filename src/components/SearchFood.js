@@ -22,12 +22,14 @@ export default async function runQuery(query, user) {
             const user_data = await getDoc(doc(db, "users", user));
 
             await setDoc(doc(db, "users", user), {
-                totalToday: total,
+                totalToday:  user_data.data().totalToday + total,
                 goal: user_data.data().goal,
                 gain: user_data.data().gain,
 
             });
+            return total;
         }
+        return null;
     } catch (error) {
         console.error('Error:', error);
     }
