@@ -63,7 +63,7 @@ function GoalPage() {
     console.log('Gain or Lose:', gain);
     const user_data = await getDoc(doc(db, "users", user));
     let total = 0;
-    if (user_data.data().totalToday) {
+    if (user_data.data() && user_data.data().totalToday) {
       total = user_data.data().totalToday;
     }
     await setDoc(doc(db, "users", user), {
