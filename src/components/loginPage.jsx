@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Container, CssBaseline, TextField, Typography, Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import Logo from '../static/logo.png'
-
+import theme from '../theme'; // Import the custom theme
 
 const useStyles = makeStyles((theme) => ({
   paper: {

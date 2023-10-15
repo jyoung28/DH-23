@@ -5,6 +5,8 @@ import axios from "axios";
 import React, {useState} from 'react';
 import { addDoc, collection } from "@firebase/firestore"
 import { firestore } from "./firebaseSetup/firebase"
+import theme from './theme'; // Import the custom theme
+import { ThemeProvider } from '@mui/material/styles';
 
 function App() {
   const [food, setFood] = useState("");
@@ -41,6 +43,7 @@ function App() {
   }
 
   return (
+    <ThemeProvider theme={theme}>
     <div className="App">
       <input type='text' onChange={(e) => setFood(e.target.value)}></input>
       <button onClick={()=>runQuery()}>Get Calories</button>
@@ -48,7 +51,9 @@ function App() {
       <button>Search with Picture</button>
 
       <span> Streak : {streak}</span>
+      <LoginPage></LoginPage>
     </div>
+    </ThemeProvider>
   );
 }
 
