@@ -7,6 +7,7 @@ import { firestore } from "./firebaseSetup/firebase"
 
 function App() {
   const [food, setFood] = useState("");
+  const [streak, setStreak] = useState(0);
   const API_KEY = '090ec85dd264d9e6f2affec5165e7e7e';
 
   const runQuery = () => {
@@ -44,6 +45,8 @@ function App() {
       <button onClick={()=>runQuery()}>Get Calories</button>
 
       <button>Search with Picture</button>
+
+      <span> Streak : {streak}</span>
     </div>
   );
 }
