@@ -34,7 +34,7 @@ function App() {
             </Routes>
         </HashRouter>
     </div>
-                <GoalPage></GoalPage>
+             
     </ThemeProvider>
   );
 }
