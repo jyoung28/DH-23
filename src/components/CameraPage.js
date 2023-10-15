@@ -2,9 +2,6 @@ import React, { useContext, useState } from 'react';
 import Webcam from 'react-webcam';
 import { Button } from '@mui/material';
 import fetchLabelsFromImage from './vision'
-import {db} from '../firebaseSetup/firebase';
-import { doc, getDoc, setDoc } from "firebase/firestore"; 
-import UserContext from './UserContext';
 //'AIzaSyC80kUfA0WpiKxc8UtDy-CqqkBYDkK0xcg'
 const CameraPage = ({ onSaveImage }) => {
   let {user} = useContext(UserContext)
@@ -15,13 +12,7 @@ const CameraPage = ({ onSaveImage }) => {
   const capture = async () => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImage(imageSrc);
-    const user_data = await getDoc(doc(db, "users", user));
-    await setDoc(doc(db, "users", user), {
-      goal:user_data.data().goal,
-      gain: user_data.data().gain,
-      totalToday : user_data.data().totalToday,
-      img : imageSrc,
-    });
+
 
     setCapturing(false);
   };
