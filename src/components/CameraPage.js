@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   button: {
-  marginTop: theme.spacing(2)
+  marginTop: '1rem'
   },
   logo: {
     marginTop:'1rem',
@@ -120,8 +120,8 @@ const capture = () => {
       ) : (
         <>
           <img src={image} alt="Captured" />
-          <Button disableElevation variant='contained' onClick={retake}   className={classes.button}>Retake</Button>
-          <Button disableElevation variant='contained' onClick={saveImage}   className={classes.button}>Submit</Button>
+          <Button disableElevation variant='contained' onClick={retake}   style={{ marginTop: "1rem" }} className={classes.button}>Retake</Button>
+          <Button disableElevation variant='contained' onClick={saveImage}  style={{ marginTop: "1rem" }} className={classes.button}>Submit</Button>
         </>
       )}
               <OptionModal
