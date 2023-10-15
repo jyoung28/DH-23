@@ -14,9 +14,10 @@ const BottomNavBar = () => {
 
   return (
     <BottomNavigation value={value} onChange={handleChange}>
-      <Link to="/home"> HOME</Link>
-      <Link to="/camera"> <CameraAltIcon /></Link>
-      <Link to="/goal"> <PersonIcon /></Link>
+
+      <Link to="/home">       <BottomNavigationAction label="Home" icon={<HomeIcon />} /></Link>
+      <Link to="/camera">       <BottomNavigationAction label="Camera" icon={<CameraAltIcon />} /> </Link>
+      <Link to="/goal">      <BottomNavigationAction label="Profile" icon={<PersonIcon />} /></Link>
     </BottomNavigation>
   );
 };
