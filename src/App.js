@@ -14,6 +14,7 @@ import SearchPage from './components/SearchPage';
 import ProfilePage from './components/ProfilePage';
 import {HashRouter, Route, Routes} from 'react-router-dom'
 
+import BottomNavbar from './components/bottomNavbar'
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -33,6 +34,7 @@ function App() {
             </Routes>
         </HashRouter>
     </div>
+                <GoalPage></GoalPage>
     </ThemeProvider>
   );
 }

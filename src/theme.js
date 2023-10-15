@@ -1,5 +1,3 @@
-// theme.js
-
 import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -15,7 +13,18 @@ const theme = createTheme({
   typography: {
     fontFamily: 'Roboto, sans-serif', // Set your preferred font
   },
-  spacing: 8, // Set your preferred spacing unit
+  spacing: 4, // Adjust the spacing unit as needed (default is 8)
+  overrides: {
+    MuiContainer: {
+      root: {
+        display: 'flex',
+        flexDirection: 'column', // Center children vertically
+        justifyContent: 'center', // Center children horizontally
+        alignItems: 'center', // Center children vertically
+        height: '100vh', // Center content within the viewport
+      },
+    },
+  },
 });
 
 export default theme;
