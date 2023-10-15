@@ -10,8 +10,17 @@ import BottomNavbar from './bottomNavbar'
 import Post2 from './Post2'
 import Post from './Post'
 import Post3 from './Post3'
-
+import logo from '../static/logosmall.png'
+import { makeStyles } from '@mui/styles';
+const useStyles = makeStyles((theme) => ({
+ logo: {
+    
+    marginTop:'1rem',
+    height: '2rem',
+  },
+}));
 function Home() {
+  const classes = useStyles();
   let {user} = useContext(UserContext);
   const [food, setFood] = useState("");
   const [streak, setStreak] = useState(0);
@@ -67,9 +76,10 @@ function Home() {
     }
   }, [])
 
-  return (
+  return (<div><img src={logo} className={classes.logo}></img>
     <div className="App">
-      <input type='text' onChange={(e) => setFood(e.target.value)}></input>
+         
+      {/* <input type='text' onChange={(e) => setFood(e.target.value)}></input>
       <button onClick={()=>handleButton()}>Get Calories</button>
 
       <button>Search with Picture</button>
@@ -78,7 +88,7 @@ function Home() {
       <h2>Progress: {progress}%</h2>
       <div className="progress-container">
         <div className="progress-bar" style={{ width: `${progress}%` }}></div>
-      </div>
+      </div> */}
       <h2>Current Calorie Count for Today: {count}</h2>
       {displayLastItem()}
       {displayGoalMet()}
@@ -88,7 +98,7 @@ function Home() {
       <Post3></Post3>
       </div>
       <BottomNavbar></BottomNavbar>
-    </div>
+    </div></div>
   );
 }
 

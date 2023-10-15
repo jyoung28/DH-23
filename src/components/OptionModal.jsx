@@ -11,6 +11,7 @@ import {
   Button,
   Typography,
 } from "@mui/material";
+import { Link } from 'react-router-dom';
 
 const OptionModal = ({ options, open, onClose, onSave }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -92,6 +93,9 @@ const OptionModal = ({ options, open, onClose, onSave }) => {
 )}
 
         <div style={{ marginTop: 20, textAlign: "center" }}>
+        <Link to="/home">
+
+        
           <Button
             variant="contained"
             color="primary"
@@ -100,6 +104,7 @@ const OptionModal = ({ options, open, onClose, onSave }) => {
           >
             Save
           </Button>
+          </Link>
         </div>
       </div>
     </Modal>
