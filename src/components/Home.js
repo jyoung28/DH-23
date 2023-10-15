@@ -74,7 +74,7 @@ function Home() {
   return (<div><img src={logo} className={classes.logo}></img>
     <div className="App">
          
-      <input type='text' onChange={(e) => setFood(e.target.value)}></input>
+      {/* <input type='text' onChange={(e) => setFood(e.target.value)}></input>
       <button onClick={()=>handleButton()}>Get Calories</button>
 
       <button>Search with Picture</button>
@@ -83,7 +83,7 @@ function Home() {
       <h2>Progress: {progress}%</h2>
       <div className="progress-container">
         <div className="progress-bar" style={{ width: `${progress}%` }}></div>
-      </div>
+      </div> */}
       <h2>Current Calorie Count for Today: {count}</h2>
       {displayLastItem()}
       {displayGoalMet()}

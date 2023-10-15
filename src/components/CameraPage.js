@@ -6,6 +6,7 @@ import {  makeStyles } from '@mui/styles';
 import BottomNavbar from './bottomNavbar'
 import logo from '../static/logosmall.png'
 import OptionModal from './OptionModal';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   cameraContainer: {
@@ -98,7 +99,7 @@ const capture = () => {
 
 
   const classes = useStyles();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
     <div>
@@ -135,7 +136,7 @@ const capture = () => {
             //setSelectedFood(selectedOption);
             runQuery(selectedOption);
             handleModalClose();
-            navigate('/home')
+            // navigate('/home')
           }}
         />
       <BottomNavbar></BottomNavbar>
