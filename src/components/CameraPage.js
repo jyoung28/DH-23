@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Webcam from 'react-webcam';
 import { Button } from '@mui/material';
 import fetchLabelsFromImage from './vision'
+import {db} from '../firebaseSetup/firebase';
+import { doc, getDoc, setDoc } from "firebase/firestore"; 
+import UserContext from './UserContext';
 //'AIzaSyC80kUfA0WpiKxc8UtDy-CqqkBYDkK0xcg'
 const CameraPage = ({ onSaveImage }) => {
+  let {user} = useContext(UserContext)
   const webcamRef = React.useRef(null);
   const [image, setImage] = useState(null);
   const [capturing, setCapturing] = useState(false);
