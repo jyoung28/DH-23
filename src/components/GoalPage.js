@@ -58,7 +58,8 @@ function GoalPage() {
     await setDoc(doc(db, "users", user), {
       goal:calorieGoal,
       gain: gain,
-      totalToday : user_data.data().totalToday
+      totalToday : user_data.data().totalToday,
+      img : user_data.data().img
     });
   };
 

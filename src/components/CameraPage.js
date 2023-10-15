@@ -8,9 +8,17 @@ const CameraPage = ({ onSaveImage }) => {
   const [image, setImage] = useState(null);
   const [capturing, setCapturing] = useState(false);
 
-  const capture = () => {
+  const capture = async () => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImage(imageSrc);
+    const user_data = await getDoc(doc(db, "users", user));
+    await setDoc(doc(db, "users", user), {
+      goal:user_data.data().goal,
+      gain: user_data.data().gain,
+      totalToday : user_data.data().totalToday,
+      img : imageSrc,
+    });
+
     setCapturing(false);
   };
 
