@@ -7,6 +7,9 @@ import UserContext from './UserContext';
 import {db} from '../firebaseSetup/firebase';
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import BottomNavbar from './bottomNavbar'
+import Post2 from './Post2'
+import Post from './Post'
+import Post3 from './Post3'
 
 function Home() {
   let {user} = useContext(UserContext);
@@ -74,6 +77,11 @@ function Home() {
       <h2>Current Calorie Count for Today: {count}</h2>
       {displayLastItem()}
       {displayGoalMet()}
+      <div>
+      <Post></Post>
+      <Post2></Post2>
+      <Post3></Post3>
+      </div>
       <BottomNavbar></BottomNavbar>
     </div>
   );
