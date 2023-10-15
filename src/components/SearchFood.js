@@ -25,7 +25,6 @@ export default async function runQuery(query, user) {
                 totalToday:  user_data.data().totalToday + total,
                 goal: user_data.data().goal,
                 gain: user_data.data().gain,
-                img: user_data.data().img,
 
             });
             return total;
