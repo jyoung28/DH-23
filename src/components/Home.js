@@ -41,6 +41,11 @@ function Home() {
       setProgress((user_data.data().totalToday/user_data.data().goal).toFixed(2))
     }
   }
+
+  useEffect(() => {
+    getCount();
+  }, [cals])
+
   const displayLastItem = () => {
     if (cals != 0) {
       return  <span>Added {cals} calories for "{lastFood}"</span>
