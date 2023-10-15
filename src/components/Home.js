@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 import { signInWithPopup} from "firebase/auth";
 import runQuery from './SearchFood.js';
 
+
 function Home() {
   const [food, setFood] = useState("");
   const [streak, setStreak] = useState(0);

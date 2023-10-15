@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,  useContext } from 'react';
 import { Button, Container, CssBaseline, TextField, Typography, Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import Logo from '../static/logo.png'
@@ -6,6 +6,7 @@ import theme from '../theme'; // Import the custom theme
 import { useNavigate } from 'react-router-dom';
 import { auth, provider } from '../firebaseSetup/firebase';
 import { signInWithPopup} from "firebase/auth";
+import UserContext from './UserContext';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -27,25 +28,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function LoginPage() {
+  let {user, loginUser} = useContext(UserContext)
 
   const navigate = useNavigate();
   const classes = useStyles();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [user, setUser] = useState(null);
   const [signedIn, setSignedIn] = useState(false);
 
 
   const handleLogin = () => {
-      signInWithPopup(auth, provider).then((result) => {
-      if (result?.user.email !== null) {
-        setUser(result.user.email);
-        setSignedIn(true);
-        navigate('/home')
-      } else {
-        console.error("error with signing in");
-      }
-    });
+      loginUser();
   };
 
 
