@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import Login from './components/LoginPage.jsx'
+import Login from './components/Login.jsx'
 import './App.css';
 import axios from "axios";
 import React, {useState} from 'react';

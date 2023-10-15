@@ -54,9 +54,11 @@ function GoalPage() {
     console.log('User:', user);
     console.log('Calorie Goal:', calorieGoal);
     console.log('Gain or Lose:', gain);
+    const user_data = await getDoc(doc(db, "users", user));
     await setDoc(doc(db, "users", user), {
       goal:calorieGoal,
       gain: gain,
+      totalToday : user_data.data().totalToday
     });
   };
 
