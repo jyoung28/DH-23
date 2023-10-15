@@ -5,6 +5,8 @@ import runQuery from './SearchFood'
 import {  makeStyles } from '@mui/styles';
 import BottomNavbar from './bottomNavbar'
 import logo from '../static/logosmall.png'
+import OptionModal from './OptionModal';
+
 const useStyles = makeStyles((theme) => ({
   cameraContainer: {
     display: 'flex',
@@ -25,6 +27,13 @@ const CameraPage = ({ onSaveImage }) => {
   const webcamRef = React.useRef(null);
   const [image, setImage] = useState(null);
   const [capturing, setCapturing] = useState(true);
+  const [food,setFood] = useState(null)
+  const [isModalOpen, setModalOpen] = useState(false); // Add state for the modal
+
+  const handleModalClose = () => {
+    setModalOpen(false); // Close the modal
+  };
+
 
 const capture = () => {
   const imageSrc = webcamRef.current.getScreenshot();
@@ -64,23 +73,25 @@ const capture = () => {
 
 
     // Make a POST request to your Flask API here
-    // Replace with the actual image URI
+    // Replace with the actual image URIhttp://127.0.0.1:5000
     fetch('http://127.0.0.1:5000/vis', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Image-URI': image,
-      },
+
+      },mode: 'cors', // Enable CORS for the request
     })
       .then(response => response.json())
       .then(data => {
         console.log('Response from Flask API:', data);
-        
+        setFood(data.result)
+        setModalOpen(true); 
       })
       .catch(error => {
         console.error('Error:', error);
       });
-
+    
  
   };
   const classes = useStyles();
@@ -107,6 +118,16 @@ const capture = () => {
           <Button disableElevation variant='contained' onClick={saveImage}   className={classes.button}>Submit</Button>
         </>
       )}
+              <OptionModal
+          options={food} // Pass the 'food' data to the modal
+          open={isModalOpen} // Open the modal based on state
+          onClose={handleModalClose} // Close the modal
+          onSave={(selectedOption) => {
+            // Handle selected option from the modal if needed
+            console.log('Selected Option:', selectedOption);
+            handleModalClose();
+          }}
+        />
       <BottomNavbar></BottomNavbar>
     </div></div>
   );

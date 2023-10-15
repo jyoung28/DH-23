@@ -13,13 +13,15 @@ import {db} from '../firebaseSetup/firebase';
 import { doc, getDoc, setDoc } from "firebase/firestore"; 
 import UserContext from './UserContext';
 import BottomNavbar from './bottomNavbar'
+import logo from '../static/logosmall.png'
+
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center', // Center content both horizontally and vertically
-    minHeight: '100vh', // Ensure the container takes up the full viewport height
+    minHeight: '90vh', // Ensure the container takes up the full viewport height
   },
   form: {
 
@@ -28,6 +30,10 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginTop: '2rem',
+  },  logo: {
+    
+    marginTop:'1rem',
+    height: '2rem',
   },
 }));
 
@@ -69,7 +75,9 @@ function GoalPage() {
 
   return (
     <div>
+        <img src={logo} className={classes.logo}></img>
     <Container className={classes.container}>
+   
       <Typography variant="h5" gutterBottom>
         {user}'s Goal Page
       </Typography>
