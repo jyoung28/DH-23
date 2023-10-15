@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {
   Container,
   Typography,
@@ -9,6 +9,10 @@ import {
 
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import {db} from '../firebaseSetup/firebase';
+import { doc, getDoc, setDoc } from "firebase/firestore"; 
+import UserContext from './UserContext';
+
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
@@ -26,24 +30,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function GoalPage({ user }) {
+function GoalPage() {
+  let {user} = useContext(UserContext);
   const classes = useStyles();
   const [calorieGoal, setCalorieGoal] = useState('');
-  const [gainOrLose, setGainOrLose] = useState(false);
+  const [gain, setGain] = useState(false);
 
-  const handleCalorieGoalChange = (event) => {
+   const handleCalorieGoalChange = (event) => {
     setCalorieGoal(event.target.value);
   };
 
+  useEffect(()=>{
+    console.log(user)
+  }, [])
+
   const handleGainOrLoseChange = () => {
-    setGainOrLose((prev) => !prev);
+    setGain((prev) => !prev);
+    // also a db.write
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // Handle the submission of the calorie goal and gainOrLose values
     console.log('User:', user);
     console.log('Calorie Goal:', calorieGoal);
-    console.log('Gain or Lose:', gainOrLose);
+    console.log('Gain or Lose:', gain);
+    await setDoc(doc(db, "users", user), {
+      goal:calorieGoal,
+      gain: gain,
+    });
   };
 
   return (
@@ -63,8 +77,8 @@ function GoalPage({ user }) {
           margin="normal"
         />
         <FormControlLabel
-          control={<Switch checked={gainOrLose} onChange={handleGainOrLoseChange} />}
-          label={gainOrLose ? 'Gain' : 'Lose'}
+          control={<Switch checked={gain} onChange={handleGainOrLoseChange} />}
+          label={gain ? 'Gain' : 'Lose'}
         />
         <Button
           variant="contained"

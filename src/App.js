@@ -11,9 +11,9 @@ import './App.css';
 import Home from './components/Home';
 import GoalPage from './components/GoalPage';
 import SearchPage from './components/SearchPage';
-import ProfilePage from './components/ProfilePage';
 import CameraPage from './components/CameraPage';
 import {HashRouter, Route, Routes} from 'react-router-dom'
+import { UserProvider } from './components/UserContext';
 
 import BottomNavbar from './components/bottomNavbar'
 function App() {
@@ -21,6 +21,7 @@ function App() {
     <ThemeProvider theme={theme}>
     <div className="App">
         <HashRouter basename='/'>
+            <UserProvider>
             {/* have the header only be on pages after login */}
             {/* <Header/> */}
          
@@ -29,12 +30,12 @@ function App() {
                 <Route element={<GoalPage/>} path="/goal" exact/>
                 <Route element={<Home/>} path="/home" exact/>
                 <Route element={<SearchPage/>} path="/search" exact/>
-                <Route element={<ProfilePage/>} path="/profile" exact/>
                 {/* <Route element={<TimelinePage/>} path="/timeline" exact/>
                 <Route element={<Projects/>} path="/projects" exact/>
                 <Route element={<ContactMe/>} path="/contactme" exact/> */}
             </Routes>
             <BottomNavbar></BottomNavbar>
+            </UserProvider>
         </HashRouter>
     </div>
              <CameraPage></CameraPage>
