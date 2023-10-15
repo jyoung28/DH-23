@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Webcam from 'react-webcam';
 import { Button } from '@mui/material';
 import runQuery from './SearchFood'
@@ -29,6 +29,8 @@ const CameraPage = ({ onSaveImage }) => {
   const [capturing, setCapturing] = useState(true);
   const [food,setFood] = useState(null)
   const [isModalOpen, setModalOpen] = useState(false); // Add state for the modal
+  const [selectedFood, setSelectedFood]= useState("");
+  const [cals, setCals] = useState(0);
 
   const handleModalClose = () => {
     setModalOpen(false); // Close the modal
@@ -94,7 +96,28 @@ const capture = () => {
     
  
   };
+
+  useEffect(() => {
+    if(selectedFood != "") {
+      try {
+        setCals(runQuery(selectedFood));
+      } catch {
+        console.error("Error")
+      }
+    }
+  }, [selectedFood])
+
+  const displayCals = () => {
+    if (cals > 0) {
+        const s = <h1> Added {cals} to your calorie count with "{selectedFood}"</h1>
+        setCals(0);
+        setSelectedFood("");
+        return s;
+    }
+  }
+
   const classes = useStyles();
+
   return (
     <div>
       <img src={logo} className={classes.logo}></img>
@@ -125,9 +148,13 @@ const capture = () => {
           onSave={(selectedOption) => {
             // Handle selected option from the modal if needed
             console.log('Selected Option:', selectedOption);
+            //do a runquery with selected option
+            // where to display results?
+            setSelectedFood(selectedOption);
             handleModalClose();
           }}
         />
+        {displayCals}
       <BottomNavbar></BottomNavbar>
     </div></div>
   );
